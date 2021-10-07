@@ -4,11 +4,13 @@
  */
 
  import logo from '../img/logo.svg';
- import posteBlank from '../img/poster-blank.png';
+ import posterBlank from '../img/poster-blank.png';
+ import loadingGhost from '../img/loading-ghost.gif';
  
  const img = {
      logo,
-     posteBlank,
+     posterBlank,
+     loadingGhost,
  }
  
  export {
