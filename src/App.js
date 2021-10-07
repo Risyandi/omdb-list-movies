@@ -2,15 +2,14 @@ import React, {Suspense} from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import routes from './routes';
 import PageNotFound from './common/component/pageNotFound';
+import LoadingGhost from './common/component/loadingGhost';
 import './assets/css/App.css';
 
 const loading = () => (
-  <div className="loading"> 
-    <div>Loading...</div>
-  </div> 
+  <LoadingGhost loadingCenter={true}/>
 );
 
-function App() {
+const App = (props) => {
   return (
     <BrowserRouter>
       <Suspense fallback={loading()}>
