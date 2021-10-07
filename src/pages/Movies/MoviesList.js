@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import MoviesServices from '../../services/moviesServices';
 import {img} from '../../assets/img';
+import LoadingGhost from '../../common/component/loadingGhost';
 
 const MoviesList = (props) => {
   
@@ -8,11 +9,6 @@ const MoviesList = (props) => {
   const [page, setPage] = useState(1);  
   const [loading, setLoading] = useState(false);  
   const [noData, setNoData] = useState(false);  
-
-  console.log(moviesList, "log: moviesList");
-  console.log(page, "log: page");
-  console.log(loading, "log: loading");
-  console.log(noData, "log: noData");
 
   window.onscroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
@@ -49,34 +45,59 @@ const MoviesList = (props) => {
   }
 
   return (
-        <div className="App">
-          <header className="App-header">
-            <p>
-              Movies List
-            </p>
-          </header>
-
-          <div className="section">
-            {
-              moviesList.map((movie, index) => (
-                <div key={index}>
-                  <p>{movie.Title}</p>
-                  <p>{movie.Year}</p>
-                  <p>{movie.Type}</p>
-                  {
-                    movie.Poster !== 'N/A' ?
-                    <img src={movie.Poster} alt={movie.title} />
-                    :
-                    <img src={img.posteBlank} alt={movie.title} />
-                  }
+    <div className="container mx-auto max-w-screen-md">
+      {/* card movies list */}
+      {
+        moviesList.map((movie, index) => (
+          <div className="bg-gray-100 rounded-md border mt-2 mb-2">
+            <div className="flex">
+              {
+                movie.Poster !== 'N/A' ?
+                <div className="flex-none w-72 h-72 relative">
+                  <img src={movie.Poster} alt="poster-images" className="absolute inset-0 w-full h-full object-cover rounded-md" />
                 </div>
-              ))
-            }
-            { loading ? <div>loading data...</div> : ''}
-            { noData ? <div>no data...</div> : ''}
+                :
+                <div className="flex-none w-72 h-72 relative">
+                  <img src={img.posterBlank} alt="poster-images" className="absolute inset-0 w-full h-full object-cover rounded-md" />
+                </div>
+              }
+              <div className="flex-auto p-6">
+                <div className="flex flex-wrap">
+                  <h1 className="flex-auto text-3xl font-semibold">
+                    {movie.Title ? movie.Title : 'Need For Speed'}
+                  </h1>
+                  <div className="w-full flex-none text-base font-medium text-gray-500 mt-2">
+                    {movie.Year ? movie.Year : '2020'} - {movie.Type ? movie.Type : 'Movie'}
+                  </div>
+                </div>
+                <p className="text-lg text-gray-500">
+                Free shipping on all continental US orders.
+              </p>
+              </div>
+            </div>
           </div>
+        ))
+      }
 
-        </div>
+      {/* loading before binding data */}
+      { 
+        loading ? 
+        <LoadingGhost loadingCenter={false}/> 
+        : ''
+      }
+
+      {/* binding data no data */}
+      { 
+       noData ?  
+        <div className="p-2 bg-gray-100 rounded-md border mt-2 mb-2 text-center">
+          <h1 className="text-base font-semibold">
+          No Data
+          </h1>
+        </div> 
+        : ''
+      }
+    </div>
+        
     )
 }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import MoviesList from './MoviesList';
 import MoviesDetail from './MoviesDetail';
 
@@ -8,7 +7,7 @@ const MoviesPages = (props) => {
     return (
         <div>
             {
-                urlRoutes === 'movies/detail' ? 
+                urlRoutes === '/movies/detail' ? 
                 <MoviesDetail /> 
                 :
                 <MoviesList />
