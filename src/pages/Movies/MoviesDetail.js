@@ -63,7 +63,7 @@ const MoviesDetail = (props) => {
                   <div className="w-full flex-none text-base font-medium text-yellow-600 mt-2 mb-2">
                     Actors : {movie.Actors ? movie.Actors : 'unknown'} | Director : {movie.Director ? movie.Director : 'unknown'}
                   </div>
-                  <Link to={`/movies`} className="text-blue-500"> 
+                  <Link to={`/`} className="text-blue-500"> 
                     <div className="w-full flex-none text-lg font-medium text-green-500 mt-5">
                       Back to movies list
                     </div>
