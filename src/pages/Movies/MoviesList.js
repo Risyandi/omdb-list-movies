@@ -48,7 +48,7 @@ const MoviesList = (props) => {
   }
 
   return (
-    <div className="container mx-auto max-w-screen-md">
+    <div className="container mx-auto max-w-screen-md pt-32">
       {/* card movies list */}
       {
         moviesList.map((movie, index) => (
