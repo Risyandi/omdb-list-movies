@@ -47,27 +47,8 @@ const MoviesList = (props) => {
     }, 1500);
   }
 
-  // const searchingData = async (event) => {
-  //   setDataSearch(event.target.value);
-  // }
-
-  // const onHandleKeyPress = async (e) => {
-  //   let eventEnter = e.key;
-  //   if (eventEnter === 'Enter') {
-  //     dataMoviesList(page, dataSearch);
-  //   }
-  // }
   return (
     <div className="container mx-auto max-w-screen-md">
-      {/* <input 
-        value={dataSearch}
-        onKeyPress={onHandleKeyPress}
-        onChange={searchingData}
-        type="search" 
-        placeholder="Search Your Favorite Movies" 
-        style={{fontSize: 17}}
-      /> */}
-
       {/* card movies list */}
       {
         moviesList.map((movie, index) => (
@@ -76,11 +57,11 @@ const MoviesList = (props) => {
               {
                 movie.Poster !== 'N/A' ?
                 <div className="flex-none w-1/6 relative">
-                  <img src={movie.Poster} alt="poster-images" className="absolute inset-0 w-full h-full object-cover rounded-md" />
+                  <img src={movie.Poster} alt="poster-images" className="absolute inset-0 w-full h-full object-cover rounded-md z-0" />
                 </div>
                 :
                 <div className="flex-none w-1/6 relative">
-                  <img src={img.posterBlank} alt="poster-images" className="absolute inset-0 w-full h-full object-cover rounded-md" />
+                  <img src={img.posterBlank} alt="poster-images" className="absolute inset-0 w-full h-full object-cover rounded-md z-0" />
                 </div>
               }
               <div className="flex-auto p-6">
