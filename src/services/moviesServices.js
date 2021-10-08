@@ -1,22 +1,41 @@
-import {xhr} from '../utils';
+import {
+    xhr
+} from '../utils';
 
 const moviesServices = {
-    getMovies: async (page) => {
+    getMovies: async (page, search) => {
         try {
             let params;
             if (page !== null && page > 1) {
                 params = {
-                    s: 'indonesia',
+                    s: search,
                     page: page
                 }
             } else {
                 params = {
-                    s: 'indonesia',
+                    s: search,
                     page: 1
                 }
             }
-            const dataMovies = await xhr.get(null, {query: params});
+            const dataMovies = await xhr.get(null, {
+                query: params
+            });
             return dataMovies;
+        } catch (error) {
+            throw error;
+        }
+    },
+    getMoviesDetail: async (id) => {
+        try {
+            let params;
+            params = {
+                i: id,
+                plot: 'full'
+            }
+            const dataMoviesDetail = await xhr.get(null, {
+                query: params
+            });
+            return dataMoviesDetail;
         } catch (error) {
             throw error;
         }

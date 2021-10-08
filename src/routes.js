@@ -24,7 +24,7 @@ const routes = [{
         typeLayout: 'full-layout'
     },
     {
-        path: '/movies/detail',
+        path: '/movies/detail/:id',
         restricted: true,
         exact: true,
         name: 'Detail Movies',
