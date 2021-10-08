@@ -1,16 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import logo from '../../assets/img/logo.svg';
+import NavigationBar from '../../common/component/navigationBar'; 
+import MoviesList from '../Movies/MoviesList'; 
 
 const Homepage = (props) => {
     return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <Link to="/movies">Movies</Link>
-            <Link to="/movies/detail">Movies Detail</Link>
-          </header>
-        </div>
+      <div className="container mx-auto">
+          <NavigationBar/>
+          <MoviesList/>
+      </div>
     )
 }
 
