@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import MoviesServices from '../../services/moviesServices';
 import {img} from '../../assets/img';
 import LoadingGhost from '../../common/component/loadingGhost';
@@ -8,26 +9,28 @@ const MoviesList = (props) => {
   const [moviesList, setMoviesList] = useState([]);  
   const [page, setPage] = useState(1);  
   const [loading, setLoading] = useState(false);  
-  const [noData, setNoData] = useState(false);  
+  const [noData, setNoData] = useState(false);
+  // eslint-disable-next-line
+  const [dataSearch, setDataSearch] = useState('indonesia');
 
   window.onscroll = () => {
     if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
       if (!noData) {
-        dataMoviesList(page);
+        dataMoviesList(page, dataSearch);
       }
     }
   }
 
   useEffect(() => {
-    dataMoviesList(page);
+    dataMoviesList(page, dataSearch);
     // eslint-disable-next-line
-  }, []);
+  }, [dataSearch]);
 
-  const dataMoviesList = (page) => {
+  const dataMoviesList = (page, dataSearch) => {
     setLoading(true);
     setTimeout(() => {
       // get data from api omdb
-      MoviesServices.getMovies(page).then(response => {
+      MoviesServices.getMovies(page, dataSearch).then(response => {
         if (response.Response !== 'False') {
           const newPage = page + 1;
           const newList = moviesList.concat(response.Search);
@@ -44,20 +47,39 @@ const MoviesList = (props) => {
     }, 1500);
   }
 
+  // const searchingData = async (event) => {
+  //   setDataSearch(event.target.value);
+  // }
+
+  // const onHandleKeyPress = async (e) => {
+  //   let eventEnter = e.key;
+  //   if (eventEnter === 'Enter') {
+  //     dataMoviesList(page, dataSearch);
+  //   }
+  // }
   return (
     <div className="container mx-auto max-w-screen-md">
+      {/* <input 
+        value={dataSearch}
+        onKeyPress={onHandleKeyPress}
+        onChange={searchingData}
+        type="search" 
+        placeholder="Search Your Favorite Movies" 
+        style={{fontSize: 17}}
+      /> */}
+
       {/* card movies list */}
       {
         moviesList.map((movie, index) => (
-          <div className="bg-gray-100 rounded-md border mt-2 mb-2">
+          <div className="bg-gray-100 rounded-md border mt-2 mb-2" key={index}>
             <div className="flex">
               {
                 movie.Poster !== 'N/A' ?
-                <div className="flex-none w-72 h-72 relative">
+                <div className="flex-none w-1/6 relative">
                   <img src={movie.Poster} alt="poster-images" className="absolute inset-0 w-full h-full object-cover rounded-md" />
                 </div>
                 :
-                <div className="flex-none w-72 h-72 relative">
+                <div className="flex-none w-1/6 relative">
                   <img src={img.posterBlank} alt="poster-images" className="absolute inset-0 w-full h-full object-cover rounded-md" />
                 </div>
               }
@@ -71,8 +93,13 @@ const MoviesList = (props) => {
                   </div>
                 </div>
                 <p className="text-lg text-gray-500">
-                Free shipping on all continental US orders.
-              </p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur corporis optio enim in placeat unde non dignissimos possimus, id, expedita et, excepturi nesciunt mollitia! Dolor eaque minus excepturi corporis iure?
+                </p>
+                <Link to={`/movies/detail/${movie.imdbID}`} className="text-blue-500"> 
+                  <div className="w-full flex-none text-lg font-medium text-green-500 mt-5">
+                    Detail Movies
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -97,7 +124,6 @@ const MoviesList = (props) => {
         : ''
       }
     </div>
-        
     )
 }
 
