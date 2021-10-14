@@ -16,7 +16,6 @@ const MoviesDetail = (props) => {
       // get data from api omdb
       MoviesServices.getMoviesDetail(id).then(response => {
         if (response.Response !== 'False') {
-          console.log(response, "response");
           let moviesArray = [];
           moviesArray.push(response);
           setMoviesDetail(moviesArray);

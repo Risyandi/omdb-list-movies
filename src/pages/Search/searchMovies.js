@@ -43,7 +43,12 @@ const SearchMovies = (props) => {
   }
 
   const searchingData = async (event) => {
-      setDataSearch(event.target.value);
+      let value = event.target.value;
+      setDataSearch(value);
+      let valueLength = value.length;
+      if (valueLength === 0) {
+        setMoviesList([]);
+      }
   }
 
 const bindData = (dataSearch) => {

@@ -53,22 +53,22 @@ function executeRequest(method, pathname, data, options = {}) {
 
 export const xhr = {
     async get(pathname, options) {
-        return executeRequest('get', pathname, null, options)
+        return executeRequest('get', pathname, null, options);
     },
 
     async post(pathname, data, options) {
-        return executeRequest('post', pathname, data, options)
+        return executeRequest('post', pathname, data, options);
     },
 
     async put(pathname, data, options) {
-        return executeRequest('put', pathname, data, options)
+        return executeRequest('put', pathname, data, options);
     },
 
     async delete(pathname, data, options) {
-        return executeRequest('delete', pathname, data, options)
+        return executeRequest('delete', pathname, data, options);
     },
 
     all(promises) {
-        return Promise.all(promises)
+        return Promise.all(promises);
     },
 }
